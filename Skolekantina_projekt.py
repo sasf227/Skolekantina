@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 import os
- 
+
 app = Flask(__name__)
 app.secret_key = "nbQ&UdC%TwrmU#Z9WG2n3nY2tc4@f$fUay@MDmy?qg??3v*tSHyfR4qjMMnM8aJD"
 
@@ -123,6 +123,11 @@ def liena():
 def liena_admin():
     return render_template("/liena-website/admin.html")
 
+@app.route("/liena_admin_form", methods=["POST"])
+def lienaAdminForm():
+    mm = request.form.get("Mandag")
+    print(mm)
+    return jsonify({"Mandag": mm})
 @app.route("/logout")
 def logout():
     session.pop('username', None)

@@ -59,7 +59,7 @@
       </div>
       
       <div class="form-template hidden">
-        <form class="menu-item-form">
+        <form id="form" method="post" class="menu-item-form">
           <input type="hidden" name="day" value="">
           <input type="hidden" name="itemId" value="">
           
@@ -105,10 +105,77 @@
       
       <div class="admin-actions">
         <button id="save-all-btn" class="primary-btn">Save All Changes</button>
+        <button id="s"">weefw</button>
+        <button id="a" onclick="a()">wswgrwsAAAAA</button>
       </div>
     </div>
   </div>
   
   <script src="../../static/scripts/admin.js"></script>
+  <script>
+
+  document.getElementById("s").addEventListener("click", async (e) =>
+  {
+    event.preventDefault()
+    const form = document.getElementById("form")
+
+    Mandag = []
+    Tirsdag = []
+    Onsdag = []
+    Torsdag = []
+    Fredag = []
+    Lørdag = []
+    Søndag = []
+
+      dag = [Søndag, Mandag, Tirsdag, Onsdag, Torsdag, Fredag, Lørdag]
+      N = 1
+      D = 1
+      P = 1
+      let menuItemName = document.querySelectorAll(".menu-item-name")
+      let menuItemDescription = document.querySelectorAll(".menu-item-description")
+      let menuItemPrice = document.querySelectorAll(".menu-item-price")
+
+          menuItemName.forEach(value =>{
+      let name = value.innerHTML
+      dag[N].push(name)
+      console.log(dag[N])
+      N++
+    })
+
+    menuItemDescription.forEach(value =>{
+      let Description = value.innerHTML
+      dag[D].push(Description)
+      console.log(dag[D])
+      D++
+    })
+
+    menuItemPrice.forEach(value =>{
+      let price = value.innerHTML.split(" ")[0]
+      dag[P].push(price)
+      console.log(dag[P])
+      P++
+    })
+
+    const formData = new FormData(form)
+    formData.append("Mandag", Mandag)
+    formData.append("Tirsdag", Tirsdag)
+    formData.append("Onsdag", Onsdag)
+    formData.append("Torsdag", Torsdag)
+    formData.append("Fredag", Fredag)
+    
+    try {
+      await fetch("{{url_for('lienaAdminForm')}}", {
+        method: "POST",
+        body: formData
+      })
+    }
+    catch {
+
+    }
+	})
+
+
+
+</script>
 </body>
 </html>

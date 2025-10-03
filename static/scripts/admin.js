@@ -1,3 +1,10 @@
+// --- Oleksandr sin shit ---
+
+
+
+
+
+
 // --- API helpers ---
 async function fetchMenu() {
 	const res = await fetch('/api/menu');
@@ -11,8 +18,10 @@ async function saveMenu(menuData) {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(menuData)
 	});
+	
 	return await res.json();
 }
+
 
 // --- State ---
 let menuData = {
